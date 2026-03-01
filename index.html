@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran ISA GEN 2</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0b0d17; /* Warna luar angkasa */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        h2 { text-align: center; color: #4cc9f0; margin-bottom: 20px; }
+        label { display: block; margin: 10px 0 5px; font-size: 14px; }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: none;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4361ee;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover { background-color: #4cc9f0; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🚀 ISA GEN 2 Registration</h2>
+    <p style="text-align: center; font-size: 12px;">Indonesia Space Astronomy</p>
+    <hr>
+    
+    <form id="regForm">
+        <label>Nama Lengkap</label>
+        <input type="text" id="nama" placeholder="Masukkan nama" required>
+
+        <label>Status Kehidupan</label>
+        <select id="status" required>
+            <option value="">-- Pilih Status --</option>
+            <option value="Mahasiswa">Mahasiswa</option>
+            <option value="Pelajar">Pelajar</option>
+            <option value="Masyarakat">Masyarakat</option>
+            <option value="Pekerja">Pekerja</option>
+        </select>
+
+        <label>Umur</label>
+        <input type="number" id="umur" placeholder="Contoh: 20" required>
+
+        <label>Link TikTok / Media Sosial</label>
+        <input type="url" id="sosmed" placeholder="https://tiktok.com/@user" required>
+
+        <button type="button" onclick="sendToWA()">Daftar Sekarang ✨</button>
+    </form>
+</div>
+
+<script>
+    function sendToWA() {
+        // --- KONFIGURASI ---
+        const noAdmin = "62895365527405"; // GANTI DENGAN NOMOR WA ADMIN (Awali dengan 62)
+        
+        // Ambil data dari input
+        const nama = document.getElementById('nama').value;
+        const status = document.getElementById('status').value;
+        const umur = document.getElementById('umur').value;
+        const sosmed = document.getElementById('sosmed').value;
+
+        // Validasi sederhana
+        if(nama === "" || status === "" || umur === "" || sosmed === "") {
+            alert("Harap isi semua kolom ya!");
+            return;
+        }
+
+        // Format Pesan
+        const pesan = `Halo Admin ISA GEN 2!%0A%0A` +
+                      `Saya ingin mendaftar komunitas:%0A` +
+                      `*Nama:* ${nama}%0A` +
+                      `*Status:* ${status}%0A` +
+                      `*Umur:* ${umur} Tahun%0A` +
+                      `*Sosmed:* ${sosmed}%0A%0A` +
+                      `Mohon segera diproses, terima kasih! 🌌`;
+
+        // Redirect ke WhatsApp
+        const urlWA = `https://wa.me/62895365527405?text= ini intronya min`;
+        window.open(urlWA, '_blank');
+    }
+</script>
+
+</body>
+  </html>
