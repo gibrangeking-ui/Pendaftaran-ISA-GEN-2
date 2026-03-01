@@ -81,41 +81,42 @@
 
 <script>
     function sendToWA() {
-        // --- KONFIGURASI ---
-        const noAdmin = "62895365527405"; // GANTI DENGAN NOMOR WA ADMIN (Awali dengan 62)
-        
-        // Ambil data dari input
+        // 1. PENTING: Ganti dengan nomor WA Admin (Gunakan kode negara 62)
+        const noAdmin = "62895365527405"; 
+
+        // 2. Mengambil data tepat dari ID input
         const nama = document.getElementById('nama').value;
         const status = document.getElementById('status').value;
         const umur = document.getElementById('umur').value;
         const sosmed = document.getElementById('sosmed').value;
 
-        // Validasi sederhana
-        if(nama === "" || status === "" || umur === "" || sosmed === "") {
-            alert("Harap isi semua kolom ya!");
+        // 3. Validasi: Pastikan tidak ada kolom kosong
+        if (!nama || !status || !umur || !sosmed) {
+            alert("Waduh, ada kolom yang belum diisi nih. Tolong dicek lagi ya!");
             return;
         }
 
-        // Format Pesan
-        const pesan = `Halo Admin ISA GEN 2!%0A%0A` +
-                      `Saya ingin mendaftar komunitas:%0A` +
-                      `*Nama:* ${nama}%0A` +
-                      `*Status:* ${status}%0A` +
-                      `*Umur:* ${umur} Tahun%0A` +
-                      `*Sosmed:* ${sosmed}%0A%0A` +
-                      `Mohon segera diproses, terima kasih! 🌌`;
+        // 4. Menyusun template pesan Intro
+        // Kita pakai backticks (`) dan encodeURIComponent agar formatnya rapi
+        const introPesan = 
+            `Halo Admin ISA GEN 2! 🚀%0A` +
+            `Saya ingin mendaftar ke komunitas. Berikut data diri saya:%0A%0A` +
+            `*Nama:* ${encodeURIComponent(nama)}%0A` +
+            `*Status:* ${encodeURIComponent(status)}%0A` +
+            `*Umur:* ${encodeURIComponent(umur)} Tahun%0A` +
+            `*Media Sosial/TikTok:* ${encodeURIComponent(sosmed)}%0A%0A` +
+            `Mohon bimbingannya, Salam Astronomi! ✨`;
 
-        // Redirect ke WhatsApp
-        const urlWA = `https://wa.me/62895365527405?text= `Halo Admin ISA GEN 2!%0A%0A` +
-                      `Saya ingin mendaftar komunitas:%0A` +
-                      `*Nama:* ${nama}%0A` +
-                      `*Status:* ${status}%0A` +
-                      `*Umur:* ${umur} Tahun%0A` +
-                      `*Sosmed:* ${sosmed}%0A%0A` +
-                      `Mohon segera diproses, terima kasih! 🌌``;
-        window.open(urlWA, '_blank');
+        // 5. Eksekusi pengiriman
+        const linkWA = `https://api.whatsapp.com/send?phone=62895365527405&text=`Halo Admin ISA GEN 2! 🚀%0A` +
+            `Saya ingin mendaftar ke komunitas. Berikut data diri saya:%0A%0A` +
+            `*Nama:* ${encodeURIComponent(nama)}%0A` +
+            `*Status:* ${encodeURIComponent(status)}%0A` +
+            `*Umur:* ${encodeURIComponent(umur)} Tahun%0A` +
+            `*Media Sosial/TikTok:* ${encodeURIComponent(sosmed)}%0A%0A` +
+            `Mohon bimbingannya, Salam Astronomi! ✨``;
+        
+        // Membuka tab baru untuk WhatsApp
+        window.open(linkWA, '_blank');
     }
 </script>
-
-</body>
-  </html>
